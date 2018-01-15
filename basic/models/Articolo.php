@@ -9,7 +9,9 @@ use Yii;
  *
  * @property int $id
  * @property string $descrizione
+ * @property int $prezzo
  * @property int $quantita
+ * @property int $totale
  * @property int $percentuale
  * @property int $ordine_id
  *
@@ -31,8 +33,8 @@ class Articolo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['descrizione', 'ordine_id'], 'required'],
-            [['quantita', 'percentuale', 'ordine_id'], 'integer'],
+            [['descrizione', 'prezzo', 'totale', 'ordine_id'], 'required'],
+            [['prezzo', 'quantita', 'totale', 'percentuale', 'ordine_id'], 'integer'],
             [['descrizione'], 'string', 'max' => 45],
             [['ordine_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ordine::className(), 'targetAttribute' => ['ordine_id' => 'id']],
         ];
@@ -46,7 +48,9 @@ class Articolo extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'descrizione' => 'Descrizione',
+            'prezzo' => 'Prezzo',
             'quantita' => 'Quantita',
+            'totale' => 'Totale',
             'percentuale' => 'Percentuale',
             'ordine_id' => 'Ordine ID',
         ];

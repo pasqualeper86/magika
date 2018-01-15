@@ -12,7 +12,7 @@ use Yii;
  * @property string $commento
  * @property string $conclusione
  * @property int $importo
- * @property int $importo_netto
+ * @property double $importo_netto
  * @property int $cliente
  * @property int $stato
  * @property int $agente
@@ -40,7 +40,8 @@ class Ordine extends \yii\db\ActiveRecord
     {
         return [
             [['data'], 'safe'],
-            [['importo', 'importo_netto', 'cliente', 'stato', 'agente'], 'integer'],
+            [['importo', 'cliente', 'stato', 'agente'], 'integer'],
+            [['importo_netto'], 'number'],
             [['cliente', 'stato', 'agente'], 'required'],
             [['commento', 'conclusione'], 'string', 'max' => 45],
             [['cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['cliente' => 'id']],

@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "cliente".
  *
  * @property int $id
- * @property string $Nome
- * @property string $Cognome
+ * @property string $nome
+ * @property string $cognome
  * @property string $ragione_sociale
  * @property string $via
  * @property string $citta
@@ -35,9 +35,7 @@ class Cliente extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['agente'], 'required'],
-            [['agente'], 'integer'],
-            [['Nome', 'Cognome', 'ragione_sociale', 'via', 'citta', 'p_iva'], 'string', 'max' => 45],
+            [['nome', 'cognome', 'ragione_sociale', 'via', 'citta', 'p_iva'], 'string', 'max' => 45],
             [['agente'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['agente' => 'id']],
         ];
     }
@@ -49,8 +47,8 @@ class Cliente extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Nome' => 'Nome',
-            'Cognome' => 'Cognome',
+            'nome' => 'Nome',
+            'cognome' => 'Cognome',
             'ragione_sociale' => 'Ragione Sociale',
             'via' => 'Via',
             'citta' => 'Citta',
@@ -62,7 +60,7 @@ class Cliente extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAgente0()
+    public function getAgente()
     {
         return $this->hasOne(Users::className(), ['id' => 'agente']);
     }

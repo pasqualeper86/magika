@@ -55,12 +55,14 @@ class ComposerStaticInit0381488d691b479a08d94c57872fc2e0
             'kartik\\plugins\\fileinput\\' => 25,
             'kartik\\plugins\\depdrop\\' => 23,
             'kartik\\plugins\\dateformatter\\' => 29,
+            'kartik\\helpers\\' => 15,
             'kartik\\growl\\' => 13,
             'kartik\\grid\\' => 12,
             'kartik\\form\\' => 12,
             'kartik\\file\\' => 12,
             'kartik\\editable\\' => 16,
             'kartik\\dialog\\' => 14,
+            'kartik\\detail\\' => 14,
             'kartik\\depdrop\\' => 15,
             'kartik\\datetime\\' => 16,
             'kartik\\daterange\\' => 17,
@@ -232,6 +234,10 @@ class ComposerStaticInit0381488d691b479a08d94c57872fc2e0
         array (
             0 => __DIR__ . '/..' . '/kartik-v/php-date-formatter',
         ),
+        'kartik\\helpers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-helpers',
+        ),
         'kartik\\growl\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-growl',
@@ -255,6 +261,10 @@ class ComposerStaticInit0381488d691b479a08d94c57872fc2e0
         'kartik\\dialog\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-dialog',
+        ),
+        'kartik\\detail\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-detail-view',
         ),
         'kartik\\depdrop\\' => 
         array (

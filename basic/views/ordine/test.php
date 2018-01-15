@@ -53,7 +53,7 @@ $gridColumns = [
     [
         'class' => 'kartik\grid\EditableColumn',
         'attribute' => 'commento',
-        'pageSummary' => 'Total',
+        'pageSummary' => 'ads',
         'vAlign' => 'middle',
         'width' => '210px',
         /*'readonly' => function($model, $key, $index, $widget) {

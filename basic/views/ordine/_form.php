@@ -1,7 +1,9 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
+use kartik\widgets\ActiveForm;
+use kartik\widgets\DatePicker;
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -10,22 +12,21 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
     <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
     <div class="row">
+        <?= $form->field($model, 'cliente')->dropDownList($clienti) ?>
         
-        <?= $form->field($model, 'data')->textInput() ?>
+        <?= $form->field($model, 'agente')->dropDownList($agenti) ?>
 
-        <?= $form->field($model, 'commento')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'commento')->textArea(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'conclusione')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'importo')->textInput() ?>
-
-        <?= $form->field($model, 'importo_netto')->textInput() ?>
-
-        <?= $form->field($model, 'cliente')->textInput() ?>
-
-        <?= $form->field($model, 'stato')->textInput() ?>
-
-        <?= $form->field($model, 'agente')->textInput() ?>
+        <?= $form->field($model, 'conclusione')->widget(DatePicker::classname(), [
+    'options' => ['placeholder' => 'Data Conclusione Prevista'],
+    'pluginOptions' => [
+        'autoclose'=>true,
+        'todayHighlight' => true,
+        'language'=>'it-IT',
+    ]
+]); ?>
+        
     </div>
 
     <div class="panel panel-default">
@@ -72,14 +73,21 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                 
                             }
                         ?>
-                        <?= $form->field($modelAddress, "[{$i}]descrizione")->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($modelAddress, "[{$i}]descrizione")->textArea(['maxlength' => true]) ?>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <?= $form->field($modelAddress, "[{$i}]quantita")->textInput(['maxlength' => true]) ?>
                             </div>
-                            <div class="col-sm-6">
-                                <?= $form->field($modelAddress, "[{$i}]percentuale")->textInput(['maxlength' => true]) ?>
+                            <div class="col-sm-4">
+                                <?= $form->field($modelAddress, "[{$i}]prezzo")->textInput(['maxlength' => true,'class' => 'prezzo_art form-control']) ?>
+                                
                             </div>
+                            <div class="col-sm-4">
+                                <?= $form->field($modelAddress, "[{$i}]percentuale")->textInput(['maxlength' => true]) ?>
+                                
+                            </div>
+                            
+                            
                         </div><!-- .row -->
                         
                     </div>
@@ -89,7 +97,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <?php DynamicFormWidget::end(); ?>
         </div>
     </div>
-
+        
     <div class="form-group">
         <?= Html::submitButton($modelAddress->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary']) ?>
     </div>
@@ -121,5 +129,42 @@ $(".dynamicform_wrapper").on("afterDelete", function(e) {
 $(".dynamicform_wrapper").on("limitReached", function(e, item) {
     alert("Limit reached");
 });
+
+function calcola(){
+    var totale=0;
+   $('[name*=totale]').each(function() {
+      totale= totale +  parseInt($('[name*=quantita]').val());
+  }); 
+    alert($(this).attr('id'));
+}
+
+$(".prezzo_art").focusout(function() {
+    //alert(11);
+    //console.log($(this).parent().parent().find('input[type=hidden]').attr('name'));
+    /*var id_quant = $(this).attr('id').replace('prezzo','quantita');
+    if ($("#"+id_quant).val() != ''){
+        var total=$(this).parent().parent().find('input[type=hidden]');
+        total.val($(this).val()*$("#"+id_quant).val());
+        var importo = $("#ordine-importo").val();
+        $("#ordine-importo").val(parseInt(importo) + parseInt(total.val()));
+        
+    } else alert (2);*/
+    
+    
+    /*var id_quant = $(this).attr('id').replace('prezzo','quantita');
+    if ($("#"+id_quant).val() == ''){
+        alert('Inserisci quantità')
+        $(this).val('');
+    } else alert (2);*/
+  //alert( id_quant);
+});
+$('[name*=quantita]').change(function() {
+    var id_prezzo = $(this).attr('id').replace('quantita','prezzo');
+    if ($("#"+id_prezzo).val() != ''){
+        $("linea")
+    } else alert (2);
+});
+    
+
     
 </script>
